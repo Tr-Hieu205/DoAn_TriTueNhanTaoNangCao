@@ -1,0 +1,27 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.coverage
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Internal agent working artifacts
+.agents/
+
+# Large model weight binaries (>100MB GitHub limit)
+# Re-generate locally or on GPU via: python training/train_phobert.py
+saved_models/phobert_multitask/*.pt
+saved_models/phobert_multitask/*.bin
+saved_models/phobert_multitask/*.safetensors
+
+# IDE / OS junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

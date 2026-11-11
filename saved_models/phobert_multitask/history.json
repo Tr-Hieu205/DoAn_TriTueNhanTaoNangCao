@@ -1,0 +1,13 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 2.4301632046699524,
+    "val_loss": 2.399084687232971,
+    "val_sentiment_acc": 0.40625,
+    "val_sentiment_f1": 0.19259259259259257,
+    "val_topic_acc": 0.25,
+    "val_topic_f1": 0.16700473292765383,
+    "val_mean_macro_f1": 0.17979866276012318,
+    "epoch_duration": 18.56683588027954
+  }
+]

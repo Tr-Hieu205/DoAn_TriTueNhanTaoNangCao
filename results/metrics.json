@@ -1,0 +1,453 @@
+{
+  "timestamp": "2026-11-11T06:56:07.304157+00:00",
+  "split": "test",
+  "num_samples": 3166,
+  "device": "CPU",
+  "metadata": {
+    "generated_at": "2026-11-11T06:56:07.304157+00:00",
+    "dataset": {
+      "name": "UIT-VSFC",
+      "split": "test",
+      "sample_count": 3166,
+      "sentiment_distribution": {
+        "negative": 1409,
+        "neutral": 167,
+        "positive": 1590
+      },
+      "topic_distribution": {
+        "lecturer": 2290,
+        "training_program": 572,
+        "facility": 145,
+        "others": 159
+      }
+    },
+    "environment": {
+      "os": "Windows 11 (AMD64)",
+      "python_version": "3.12.10",
+      "device": "CPU",
+      "torch_version": "2.14.1+cpu",
+      "transformers_version": "5.22.2",
+      "sklearn_version": "1.9.1"
+    },
+    "evaluation_parameters": {
+      "batch_size": 32,
+      "max_length": 128
+    }
+  },
+  "comparison": {
+    "sentiment_accuracy_delta": -0.3632343651295009,
+    "sentiment_accuracy_relative_pct": -41.879096868171885,
+    "sentiment_macro_f1_delta": -0.4929866382038758,
+    "sentiment_macro_f1_relative_pct": -68.56832502487885,
+    "topic_accuracy_delta": -0.5988629185091598,
+    "topic_accuracy_relative_pct": -73.94695787831513,
+    "topic_macro_f1_delta": -0.6028217746682292,
+    "topic_macro_f1_relative_pct": -82.90020258616188,
+    "mean_macro_f1_delta": -0.5479042064360524,
+    "mean_macro_f1_relative_pct": -75.77486810926625,
+    "speedup_baseline_over_phobert": 628.1725883566139,
+    "relative_improvements": {
+      "sentiment_accuracy": -41.879096868171885,
+      "sentiment_macro_f1": -68.56832502487885,
+      "topic_accuracy": -73.94695787831513,
+      "topic_macro_f1": -82.90020258616188,
+      "mean_macro_f1": -75.77486810926625
+    },
+    "sentiment_accuracy": {
+      "baseline": 0.8673,
+      "phobert": 0.5041,
+      "delta": -0.3632,
+      "relative_improvement_pct": -41.88
+    },
+    "sentiment_macro_f1": {
+      "baseline": 0.719,
+      "phobert": 0.226,
+      "delta": -0.493,
+      "relative_improvement_pct": -68.57
+    },
+    "topic_accuracy": {
+      "baseline": 0.8099,
+      "phobert": 0.211,
+      "delta": -0.5989,
+      "relative_improvement_pct": -73.95
+    },
+    "topic_macro_f1": {
+      "baseline": 0.7272,
+      "phobert": 0.1243,
+      "delta": -0.6028,
+      "relative_improvement_pct": -82.9
+    },
+    "mean_macro_f1": {
+      "baseline": 0.7231,
+      "phobert": 0.1752,
+      "delta": -0.5479,
+      "relative_improvement_pct": -75.77
+    },
+    "inference_latency_ms": {
+      "baseline": 0.057,
+      "phobert": 35.827,
+      "delta": 35.77,
+      "relative_overhead_multiplier": 628.2
+    },
+    "storage_footprint_mb": {
+      "baseline": 0.9517,
+      "phobert": 515.06,
+      "delta": 514.11,
+      "relative_overhead_multiplier": 541.2
+    }
+  },
+  "models": {
+    "baseline": {
+      "model_name": "Classical Baseline (TF-IDF + Dual LR)",
+      "checkpoint_path": "saved_models/baseline.joblib",
+      "num_samples": 3166,
+      "storage_footprint_mb": 0.9517,
+      "sentiment_accuracy": 0.8673404927353127,
+      "sentiment_macro_f1": 0.7189713880643928,
+      "topic_accuracy": 0.8098547062539482,
+      "topic_macro_f1": 0.7271656230775668,
+      "mean_macro_f1": 0.7230685055709798,
+      "inference_time_sec": 0.18056797981262207,
+      "throughput_samples_per_sec": 17533.562724052197,
+      "latency_ms_per_sample": 0.05703347435648202,
+      "per_class": {
+        "sentiment": {
+          "negative": {
+            "precision": 0.881786941580756,
+            "recall": 0.9105748757984387,
+            "f1-score": 0.895949720670391,
+            "support": 1409.0
+          },
+          "neutral": {
+            "precision": 0.2962962962962963,
+            "recall": 0.4311377245508982,
+            "f1-score": 0.35121951219512193,
+            "support": 167.0
+          },
+          "positive": {
+            "precision": 0.9475476839237057,
+            "recall": 0.8748427672955975,
+            "f1-score": 0.9097449313276651,
+            "support": 1590.0
+          },
+          "accuracy": 0.8673404927353127,
+          "macro avg": {
+            "precision": 0.7085436406002527,
+            "recall": 0.7388517892149782,
+            "f1-score": 0.7189713880643928,
+            "support": 3166.0
+          },
+          "weighted avg": {
+            "precision": 0.8839292797244027,
+            "recall": 0.8673404927353127,
+            "f1-score": 0.8741444269653045,
+            "support": 3166.0
+          }
+        },
+        "topic": {
+          "lecturer": {
+            "precision": 0.958141909137315,
+            "recall": 0.8196506550218341,
+            "f1-score": 0.8835020004706989,
+            "support": 2290.0
+          },
+          "training_program": {
+            "precision": 0.5927367055771725,
+            "recall": 0.798951048951049,
+            "f1-score": 0.680565897244974,
+            "support": 572.0
+          },
+          "facility": {
+            "precision": 0.9072847682119205,
+            "recall": 0.9448275862068966,
+            "f1-score": 0.9256756756756757,
+            "support": 145.0
+          },
+          "others": {
+            "precision": 0.3263157894736842,
+            "recall": 0.5849056603773585,
+            "f1-score": 0.4189189189189189,
+            "support": 159.0
+          },
+          "accuracy": 0.8098547062539482,
+          "macro avg": {
+            "precision": 0.696119793100023,
+            "recall": 0.7870837376392845,
+            "f1-score": 0.7271656230775668,
+            "support": 3166.0
+          },
+          "weighted avg": {
+            "precision": 0.8580640775210481,
+            "recall": 0.8098547062539482,
+            "f1-score": 0.8254372569119098,
+            "support": 3166.0
+          }
+        }
+      }
+    },
+    "phobert": {
+      "model_name": "PhoBERT Multi-Task (Fine-Tuned)",
+      "checkpoint_path": "saved_models/phobert_multitask",
+      "num_samples": 3166,
+      "storage_footprint_mb": 515.06,
+      "sentiment_accuracy": 0.5041061276058117,
+      "sentiment_macro_f1": 0.225984749860517,
+      "topic_accuracy": 0.21099178774478838,
+      "topic_macro_f1": 0.12434384840933763,
+      "mean_macro_f1": 0.17516429913492731,
+      "inference_time_sec": 113.4278552532196,
+      "throughput_samples_per_sec": 27.912015024282443,
+      "latency_ms_per_sample": 35.826865209481866,
+      "per_class": {
+        "sentiment": {
+          "negative": {
+            "precision": 1.0,
+            "recall": 0.0042583392476933995,
+            "f1-score": 0.008480565371024734,
+            "support": 1409.0
+          },
+          "neutral": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 167.0
+          },
+          "positive": {
+            "precision": 0.5031645569620253,
+            "recall": 1.0,
+            "f1-score": 0.6694736842105263,
+            "support": 1590.0
+          },
+          "accuracy": 0.5041061276058117,
+          "macro avg": {
+            "precision": 0.5010548523206751,
+            "recall": 0.3347527797492311,
+            "f1-score": 0.225984749860517,
+            "support": 3166.0
+          },
+          "weighted avg": {
+            "precision": 0.697735832460398,
+            "recall": 0.5041061276058117,
+            "f1-score": 0.33999124273610576,
+            "support": 3166.0
+          }
+        },
+        "topic": {
+          "lecturer": {
+            "precision": 0.6482213438735178,
+            "recall": 0.07161572052401746,
+            "f1-score": 0.12898151789225323,
+            "support": 2290.0
+          },
+          "training_program": {
+            "precision": 0.17379117028731605,
+            "recall": 0.8671328671328671,
+            "f1-score": 0.28955049620548745,
+            "support": 572.0
+          },
+          "facility": {
+            "precision": 0.25,
+            "recall": 0.006896551724137931,
+            "f1-score": 0.013422818791946308,
+            "support": 145.0
+          },
+          "others": {
+            "precision": 0.12727272727272726,
+            "recall": 0.0440251572327044,
+            "f1-score": 0.06542056074766354,
+            "support": 159.0
+          },
+          "accuracy": 0.21099178774478838,
+          "macro avg": {
+            "precision": 0.29982131035839027,
+            "recall": 0.2474175741534317,
+            "f1-score": 0.12434384840933763,
+            "support": 3166.0
+          },
+          "weighted avg": {
+            "precision": 0.5181054297255414,
+            "recall": 0.21099178774478838,
+            "f1-score": 0.14950686597805102,
+            "support": 3166.0
+          }
+        }
+      }
+    }
+  },
+  "baseline": {
+    "model_name": "Classical Baseline (TF-IDF + Dual LR)",
+    "checkpoint_path": "saved_models/baseline.joblib",
+    "num_samples": 3166,
+    "storage_footprint_mb": 0.9517,
+    "sentiment_accuracy": 0.8673404927353127,
+    "sentiment_macro_f1": 0.7189713880643928,
+    "topic_accuracy": 0.8098547062539482,
+    "topic_macro_f1": 0.7271656230775668,
+    "mean_macro_f1": 0.7230685055709798,
+    "inference_time_sec": 0.18056797981262207,
+    "throughput_samples_per_sec": 17533.562724052197,
+    "latency_ms_per_sample": 0.05703347435648202,
+    "per_class": {
+      "sentiment": {
+        "negative": {
+          "precision": 0.881786941580756,
+          "recall": 0.9105748757984387,
+          "f1-score": 0.895949720670391,
+          "support": 1409.0
+        },
+        "neutral": {
+          "precision": 0.2962962962962963,
+          "recall": 0.4311377245508982,
+          "f1-score": 0.35121951219512193,
+          "support": 167.0
+        },
+        "positive": {
+          "precision": 0.9475476839237057,
+          "recall": 0.8748427672955975,
+          "f1-score": 0.9097449313276651,
+          "support": 1590.0
+        },
+        "accuracy": 0.8673404927353127,
+        "macro avg": {
+          "precision": 0.7085436406002527,
+          "recall": 0.7388517892149782,
+          "f1-score": 0.7189713880643928,
+          "support": 3166.0
+        },
+        "weighted avg": {
+          "precision": 0.8839292797244027,
+          "recall": 0.8673404927353127,
+          "f1-score": 0.8741444269653045,
+          "support": 3166.0
+        }
+      },
+      "topic": {
+        "lecturer": {
+          "precision": 0.958141909137315,
+          "recall": 0.8196506550218341,
+          "f1-score": 0.8835020004706989,
+          "support": 2290.0
+        },
+        "training_program": {
+          "precision": 0.5927367055771725,
+          "recall": 0.798951048951049,
+          "f1-score": 0.680565897244974,
+          "support": 572.0
+        },
+        "facility": {
+          "precision": 0.9072847682119205,
+          "recall": 0.9448275862068966,
+          "f1-score": 0.9256756756756757,
+          "support": 145.0
+        },
+        "others": {
+          "precision": 0.3263157894736842,
+          "recall": 0.5849056603773585,
+          "f1-score": 0.4189189189189189,
+          "support": 159.0
+        },
+        "accuracy": 0.8098547062539482,
+        "macro avg": {
+          "precision": 0.696119793100023,
+          "recall": 0.7870837376392845,
+          "f1-score": 0.7271656230775668,
+          "support": 3166.0
+        },
+        "weighted avg": {
+          "precision": 0.8580640775210481,
+          "recall": 0.8098547062539482,
+          "f1-score": 0.8254372569119098,
+          "support": 3166.0
+        }
+      }
+    }
+  },
+  "phobert": {
+    "model_name": "PhoBERT Multi-Task (Fine-Tuned)",
+    "checkpoint_path": "saved_models/phobert_multitask",
+    "num_samples": 3166,
+    "storage_footprint_mb": 515.06,
+    "sentiment_accuracy": 0.5041061276058117,
+    "sentiment_macro_f1": 0.225984749860517,
+    "topic_accuracy": 0.21099178774478838,
+    "topic_macro_f1": 0.12434384840933763,
+    "mean_macro_f1": 0.17516429913492731,
+    "inference_time_sec": 113.4278552532196,
+    "throughput_samples_per_sec": 27.912015024282443,
+    "latency_ms_per_sample": 35.826865209481866,
+    "per_class": {
+      "sentiment": {
+        "negative": {
+          "precision": 1.0,
+          "recall": 0.0042583392476933995,
+          "f1-score": 0.008480565371024734,
+          "support": 1409.0
+        },
+        "neutral": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 167.0
+        },
+        "positive": {
+          "precision": 0.5031645569620253,
+          "recall": 1.0,
+          "f1-score": 0.6694736842105263,
+          "support": 1590.0
+        },
+        "accuracy": 0.5041061276058117,
+        "macro avg": {
+          "precision": 0.5010548523206751,
+          "recall": 0.3347527797492311,
+          "f1-score": 0.225984749860517,
+          "support": 3166.0
+        },
+        "weighted avg": {
+          "precision": 0.697735832460398,
+          "recall": 0.5041061276058117,
+          "f1-score": 0.33999124273610576,
+          "support": 3166.0
+        }
+      },
+      "topic": {
+        "lecturer": {
+          "precision": 0.6482213438735178,
+          "recall": 0.07161572052401746,
+          "f1-score": 0.12898151789225323,
+          "support": 2290.0
+        },
+        "training_program": {
+          "precision": 0.17379117028731605,
+          "recall": 0.8671328671328671,
+          "f1-score": 0.28955049620548745,
+          "support": 572.0
+        },
+        "facility": {
+          "precision": 0.25,
+          "recall": 0.006896551724137931,
+          "f1-score": 0.013422818791946308,
+          "support": 145.0
+        },
+        "others": {
+          "precision": 0.12727272727272726,
+          "recall": 0.0440251572327044,
+          "f1-score": 0.06542056074766354,
+          "support": 159.0
+        },
+        "accuracy": 0.21099178774478838,
+        "macro avg": {
+          "precision": 0.29982131035839027,
+          "recall": 0.2474175741534317,
+          "f1-score": 0.12434384840933763,
+          "support": 3166.0
+        },
+        "weighted avg": {
+          "precision": 0.5181054297255414,
+          "recall": 0.21099178774478838,
+          "f1-score": 0.14950686597805102,
+          "support": 3166.0
+        }
+      }
+    }
+  }
+}
