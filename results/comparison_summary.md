@@ -1,7 +1,7 @@
 # Comparative Evaluation Report: Vietnamese Student Feedback Classification
 
 *Dataset: UIT-VSFC `test` split (N = 3,166 samples)*  
-*Generated: 2026-11-11 06:56:07 UTC | Host Device: CPU*
+*Generated: 2026-11-11 15:20:05 UTC | Host Device: CPU*
 
 ---
 
@@ -9,12 +9,12 @@
 
 | Task / Metric | Classical Baseline (TF-IDF + LR) | PhoBERT Multi-Task (v2) | Delta (Δ) | Relative Improvement (%) |
 | :--- | :---: | :---: | :---: | :---: |
-| **Sentiment Accuracy** | 86.73% | 50.41% | -36.32% | -41.88% |
-| **Sentiment Macro-F1** | 71.90% | 22.60% | -49.30% | -68.57% |
-| **Topic Accuracy** | 80.99% | 21.10% | -59.89% | -73.95% |
-| **Topic Macro-F1** | 72.72% | 12.43% | -60.28% | -82.90% |
-| **Mean Macro-F1** | 72.31% | 17.52% | -54.79% | -75.77% |
-| **Inference Latency (ms/sample)** | 0.06 ms | 35.83 ms | +35.77 ms | 628.2x slower |
+| **Sentiment Accuracy** | 86.73% | 93.49% | +6.76% | +7.79% |
+| **Sentiment Macro-F1** | 71.90% | 82.89% | +10.99% | +15.29% |
+| **Topic Accuracy** | 80.99% | 88.41% | +7.42% | +9.17% |
+| **Topic Macro-F1** | 72.72% | 80.10% | +7.39% | +10.16% |
+| **Mean Macro-F1** | 72.31% | 81.50% | +9.19% | +12.71% |
+| **Inference Latency (ms/sample)** | 0.05 ms | 30.10 ms | +30.05 ms | 660.9x slower |
 | **Model Storage Footprint (MB)** | 0.95 MB | 515.06 MB | +514.11 MB | 541.2x larger |
 
 ---
@@ -56,24 +56,24 @@
 | Class | Model | Precision | Recall | F1-Score | Support |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | `negative` (0) | Baseline | 88.18% | 91.06% | 89.59% | 1409 |
-| `negative` (0) | PhoBERT | 100.00% | 0.43% | 0.85% | 1409 |
+| `negative` (0) | PhoBERT | 94.10% | 96.17% | 95.12% | 1409 |
 | `neutral` (1) | Baseline | 29.63% | 43.11% | 35.12% | 167 |
-| `neutral` (1) | PhoBERT | 0.00% | 0.00% | 0.00% | 167 |
+| `neutral` (1) | PhoBERT | 65.91% | 52.10% | 58.19% | 167 |
 | `positive` (2) | Baseline | 94.75% | 87.48% | 90.97% | 1590 |
-| `positive` (2) | PhoBERT | 50.32% | 100.00% | 66.95% | 1590 |
+| `positive` (2) | PhoBERT | 95.23% | 95.47% | 95.35% | 1590 |
 
 ### 3.2 Topic Classification (4 Classes)
 
 | Class | Model | Precision | Recall | F1-Score | Support |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | `lecturer` (0) | Baseline | 95.81% | 81.97% | 88.35% | 2290 |
-| `lecturer` (0) | PhoBERT | 64.82% | 7.16% | 12.90% | 2290 |
+| `lecturer` (0) | PhoBERT | 94.87% | 92.01% | 93.42% | 2290 |
 | `training_program` (1) | Baseline | 59.27% | 79.90% | 68.06% | 572 |
-| `training_program` (1) | PhoBERT | 17.38% | 86.71% | 28.96% | 572 |
+| `training_program` (1) | PhoBERT | 74.20% | 80.94% | 77.42% | 572 |
 | `facility` (2) | Baseline | 90.73% | 94.48% | 92.57% | 145 |
-| `facility` (2) | PhoBERT | 25.00% | 0.69% | 1.34% | 145 |
+| `facility` (2) | PhoBERT | 95.14% | 94.48% | 94.81% | 145 |
 | `others` (3) | Baseline | 32.63% | 58.49% | 41.89% | 159 |
-| `others` (3) | PhoBERT | 12.73% | 4.40% | 6.54% | 159 |
+| `others` (3) | PhoBERT | 51.98% | 57.86% | 54.76% | 159 |
 
 ---
 

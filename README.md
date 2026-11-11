@@ -151,12 +151,12 @@ Evaluated on the official UIT-VSFC `test` split ($N = 3,166$ samples) under iden
 
 | Task / Metric | Classical Baseline (TF-IDF + LR) | PhoBERT Multi-Task (v2) | Delta (Δ) | Relative Change |
 | :--- | :---: | :---: | :---: | :---: |
-| **Sentiment Accuracy** | **86.73%** | 50.41% | -36.32% | -41.88% |
-| **Sentiment Macro-F1** | **71.90%** | 22.60% | -49.30% | -68.57% |
-| **Topic Accuracy** | **80.99%** | 21.10% | -59.89% | -73.95% |
-| **Topic Macro-F1** | **72.72%** | 12.43% | -60.28% | -82.90% |
-| **Mean Macro-F1** | **72.31%** | 17.52% | -54.79% | -75.77% |
-| **Inference Latency** | **0.06 ms/sample** | 35.83 ms/sample | +35.77 ms | 628.2x slower |
+| **Sentiment Accuracy** | 86.73% | **93.49%** | +6.76% | +7.79% |
+| **Sentiment Macro-F1** | 71.90% | **82.89%** | +10.99% | +15.29% |
+| **Topic Accuracy** | 80.99% | **88.41%** | +7.42% | +9.17% |
+| **Topic Macro-F1** | 72.72% | **80.10%** | +7.39% | +10.16% |
+| **Mean Macro-F1** | 72.31% | **81.50%** | +9.19% | +12.71% |
+| **Inference Latency** | **0.05 ms/sample** | 30.10 ms/sample | +30.05 ms | 660.9x slower |
 | **Model Size** | **0.95 MB** | 515.06 MB | +514.11 MB | 541.2x larger |
 
 ### Pedagogical Takeaways for Students

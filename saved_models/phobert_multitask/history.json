@@ -1,13 +1,35 @@
 [
   {
     "epoch": 1,
-    "train_loss": 2.4301632046699524,
-    "val_loss": 2.399084687232971,
-    "val_sentiment_acc": 0.40625,
-    "val_sentiment_f1": 0.19259259259259257,
-    "val_topic_acc": 0.25,
-    "val_topic_f1": 0.16700473292765383,
-    "val_mean_macro_f1": 0.17979866276012318,
-    "epoch_duration": 18.56683588027954
+    "train_loss": 1.2183542305839348,
+    "val_loss": 0.5361972283277795,
+    "val_sentiment_acc": 0.9368288060644346,
+    "val_sentiment_f1": 0.8228343575879111,
+    "val_topic_acc": 0.886923562855338,
+    "val_topic_f1": 0.7963185323937514,
+    "val_mean_macro_f1": 0.8095764449908313,
+    "epoch_duration": 312.0774383544922
+  },
+  {
+    "epoch": 2,
+    "train_loss": 0.8227418907131474,
+    "val_loss": 0.5178530389044154,
+    "val_sentiment_acc": 0.9425142135186355,
+    "val_sentiment_f1": 0.8320646772927285,
+    "val_topic_acc": 0.8913455464308275,
+    "val_topic_f1": 0.8064159101341521,
+    "val_mean_macro_f1": 0.8192402937134403,
+    "epoch_duration": 272.8995110988617
+  },
+  {
+    "epoch": 3,
+    "train_loss": 0.722459058179009,
+    "val_loss": 0.5154749769164427,
+    "val_sentiment_acc": 0.9450410612760581,
+    "val_sentiment_f1": 0.8499678587372544,
+    "val_topic_acc": 0.8932406822488945,
+    "val_topic_f1": 0.8119872122598081,
+    "val_mean_macro_f1": 0.8309775354985313,
+    "epoch_duration": 341.77396154403687
   }
 ]

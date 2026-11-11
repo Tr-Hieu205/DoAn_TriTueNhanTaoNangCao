@@ -545,29 +545,25 @@ def load_baseline_model(checkpoint_path: Optional[str] = None) -> Optional[Vietn
     except Exception:
         return None
 
+def _get_phobert_weights_mtime(checkpoint_dir: str) -> float:
+    """Returns latest weight file modification timestamp to auto-refresh cache on retrain."""
+    for fname in ("model.pt", "pytorch_model.bin"):
+        fpath = os.path.join(checkpoint_dir, fname)
+        if os.path.isfile(fpath):
+            try:
+                return float(os.path.getmtime(fpath))
+            except OSError:
+                return 0.0
+    return 0.0
+
+
 @st.cache_resource(show_spinner=False)
-def load_phobert_pipeline(
-    checkpoint_dir: Optional[str] = None
+def _load_phobert_pipeline_cached(
+    checkpoint_dir: str,
+    weights_mtime: float,
 ) -> Tuple[Optional[PhoBERTMultiTask], Any, str]:
-    """
-    Loads and caches PhoBERT Multi-Task model and offline AutoTokenizer.
-    Returns (model, tokenizer, device_str).
-    """
-    if checkpoint_dir is None:
-        checkpoint_dir = DEFAULT_PHOBERT_DIR
-    if not os.path.isabs(checkpoint_dir):
-        checkpoint_dir = os.path.join(PROJECT_ROOT, checkpoint_dir)
-
-    if not os.path.isdir(checkpoint_dir):
-        return None, None, "cpu"
-
-    weights_exist = any(
-        os.path.isfile(os.path.join(checkpoint_dir, f))
-        for f in ("model.pt", "pytorch_model.bin")
-    )
-    if not weights_exist:
-        return None, None, "cpu"
-
+    """Loads and caches PhoBERT Multi-Task model keyed by checkpoint dir and weight mtime."""
+    _ = weights_mtime
     device_str = "cuda" if torch.cuda.is_available() else "cpu"
     device = torch.device(device_str)
 
@@ -594,6 +590,35 @@ def load_phobert_pipeline(
         return model, tokenizer, device_str
     except Exception:
         return None, None, device_str
+
+
+def load_phobert_pipeline(
+    checkpoint_dir: Optional[str] = None
+) -> Tuple[Optional[PhoBERTMultiTask], Any, str]:
+    """
+    Loads and caches PhoBERT Multi-Task model and offline AutoTokenizer.
+    Returns (model, tokenizer, device_str).
+    """
+    if checkpoint_dir is None:
+        checkpoint_dir = DEFAULT_PHOBERT_DIR
+    if not os.path.isabs(checkpoint_dir):
+        checkpoint_dir = os.path.join(PROJECT_ROOT, checkpoint_dir)
+
+    if not os.path.isdir(checkpoint_dir):
+        return None, None, "cpu"
+
+    weights_exist = any(
+        os.path.isfile(os.path.join(checkpoint_dir, f))
+        for f in ("model.pt", "pytorch_model.bin")
+    )
+    if not weights_exist:
+        return None, None, "cpu"
+
+    weights_mtime = _get_phobert_weights_mtime(checkpoint_dir)
+    return _load_phobert_pipeline_cached(checkpoint_dir, weights_mtime)
+
+
+load_phobert_pipeline.clear = _load_phobert_pipeline_cached.clear
 
 # ---------------------------------------------------------------------------
 # UI Rendering Helpers
