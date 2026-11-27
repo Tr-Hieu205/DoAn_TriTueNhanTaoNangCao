@@ -12,13 +12,15 @@ from typing import Any, Dict, List, Optional
 import plotly.graph_objects as go
 import streamlit as st
 
-# Bảng màu chủ đạo Vibrant AI Gradient
-BG_DEEP = "#070913"
-BG_CARD = "rgba(13, 19, 38, 0.78)"
-CYAN = "#06B6D4"
-CYAN_BRIGHT = "#22D3EE"
-VIOLET = "#8B5CF6"
-VIOLET_BRIGHT = "#A855F7"
+# Bảng màu chủ đạo Taste-Skill 2.5 (Obsidian & Slate Theme)
+BG_DEEP = "#0A0E17"
+BG_CARD = "#111827"
+BG_SURFACE = "#161F30"
+BORDER = "#26334D"
+CYAN = "#38BDF8"
+CYAN_BRIGHT = "#38BDF8"
+VIOLET = "#818CF8"
+VIOLET_BRIGHT = "#A5B4FC"
 EMERALD = "#10B981"
 ROSE = "#F43F5E"
 AMBER = "#F59E0B"
@@ -107,29 +109,17 @@ def format_class_label(label: str, lang: str = "vi") -> str:
 
 
 def inject_vibrant_theme() -> None:
-    """Tiêm CSS chủ đề Vibrant AI Gradient: ẩn hoàn toàn Sidebar, tùy biến Selectbox, Tabs và Bento Grid."""
+    """Tiêm CSS chủ đề Obsidian & Slate theo chuẩn taste-skill 2.5: ẩn Sidebar, typography Geist, bento cards hairline border."""
     st.markdown(
         """
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600;700&display=swap');
 
-        /* Ẩn hoàn toàn Sidebar và nút đóng/mở Sidebar */
+        /* Ẩn hoàn toàn Sidebar và các nút điều khiển mặc định */
         section[data-testid="stSidebar"],
         [data-testid="stSidebar"],
         [data-testid="collapsedControl"],
-        [data-testid="stSidebarCollapsedControl"] {
-            display: none !important;
-        }
-
-        html, body, .stApp {
-            background:
-                radial-gradient(circle at 12% 8%, rgba(139, 92, 246, 0.16), transparent 40%),
-                radial-gradient(circle at 88% 12%, rgba(6, 182, 212, 0.15), transparent 40%),
-                #070913 !important;
-            color: #F8FAFC !important;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-        }
-
+        [data-testid="stSidebarCollapsedControl"],
         header[data-testid="stHeader"],
         [data-testid="stHeader"],
         [data-testid="stToolbar"],
@@ -144,49 +134,50 @@ def inject_vibrant_theme() -> None:
             height: 0 !important;
         }
 
+        html, body, .stApp {
+            background-color: #0A0E17 !important;
+            background: #0A0E17 !important;
+            color: #F8FAFC !important;
+            font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        }
+
         .block-container {
             padding-top: 0.75rem !important;
             padding-bottom: 2rem !important;
-            max-width: 1480px !important;
+            max-width: 1400px !important;
         }
 
         code {
-            background: rgba(139, 92, 246, 0.22) !important;
-            color: #22D3EE !important;
-            border: 1px solid rgba(34, 211, 238, 0.38) !important;
+            background: #161F30 !important;
+            color: #38BDF8 !important;
+            border: 1px solid #26334D !important;
             padding: 0.12rem 0.42rem !important;
             border-radius: 6px !important;
-            font-family: 'JetBrains Mono', monospace !important;
+            font-family: 'Geist Mono', monospace !important;
             font-size: 0.84em !important;
         }
 
         label, .stMarkdown p, .stRadio label, .stSelectbox label, .stTextArea label {
             color: #E2E8F0 !important;
-            font-weight: 600 !important;
+            font-weight: 500 !important;
+            font-family: 'Geist', sans-serif !important;
         }
 
-        /* Thanh tiêu đề tối giản (Compact Single-Line Project Title Bar) */
+        /* Thanh tiêu đề tối giản (Single-Line Top Title Bar) */
         .top-title-bar {
             position: relative;
             display: flex;
             align-items: center;
             gap: 0.65rem;
-            background: linear-gradient(135deg, rgba(13, 21, 40, 0.92) 0%, rgba(15, 23, 42, 0.82) 100%);
-            border: 1px solid rgba(34, 211, 238, 0.35);
+            background: #111827;
+            border: 1px solid #26334D;
+            border-left: 3px solid #3B82F6;
             border-radius: 12px;
             padding: 0.52rem 1rem;
-            margin-bottom: 0.45rem;
+            margin-bottom: 0.5rem;
             min-height: 44px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
             overflow: hidden;
-        }
-        .top-title-bar::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; bottom: 0;
-            width: 4px;
-            background: linear-gradient(180deg, #06B6D4, #8B5CF6);
         }
         .top-title-icon {
             display: inline-flex;
@@ -194,21 +185,19 @@ def inject_vibrant_theme() -> None:
             justify-content: center;
             width: 28px;
             height: 28px;
-            border-radius: 8px;
-            background: rgba(139, 92, 246, 0.22);
-            border: 1px solid rgba(34, 211, 238, 0.4);
+            border-radius: 6px;
+            background: #161F30;
+            border: 1px solid #26334D;
             font-size: 0.95rem;
             flex-shrink: 0;
         }
         .top-title-main {
             font-size: 1.05rem;
-            font-weight: 700;
+            font-weight: 600;
             line-height: 1.25;
             margin: 0;
-            letter-spacing: 0.01em;
-            background: linear-gradient(90deg, #F8FAFC 0%, #22D3EE 60%, #C4B5FD 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.01em;
+            color: #F8FAFC;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -216,31 +205,31 @@ def inject_vibrant_theme() -> None:
         .top-title-tag {
             margin-left: auto;
             font-size: 0.72rem;
-            font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
-            color: #22D3EE;
-            background: rgba(6, 182, 212, 0.14);
-            border: 1px solid rgba(34, 211, 238, 0.35);
+            font-weight: 600;
+            font-family: 'Geist Mono', monospace;
+            color: #38BDF8;
+            background: #161F30;
+            border: 1px solid #26334D;
             padding: 0.16rem 0.55rem;
-            border-radius: 999px;
+            border-radius: 6px;
             flex-shrink: 0;
         }
 
-        /* Thiết kế lại Dropdown (Selectbox - cả BaseWeb & React Aria ComboBox) chuẩn Glassmorphic Neon */
+        /* Dropdown (Selectbox) Obsidian Hairline */
         [data-testid="stSelectbox"] div[data-baseweb="select"],
         [data-testid="stSelectbox"] div[data-baseweb="select"] > div,
         div[data-baseweb="select"] > div,
         .react-aria-ComboBox div[role="group"],
         [data-testid="stSelectbox"] div[role="group"] {
-            background: linear-gradient(135deg, #0D1528 0%, #111C35 100%) !important;
-            background-color: #0D1528 !important;
+            background: #111827 !important;
+            background-color: #111827 !important;
             color: #F8FAFC !important;
-            border: 1px solid rgba(34, 211, 238, 0.45) !important;
-            border-radius: 12px !important;
-            min-height: 46px !important;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+            border: 1px solid #26334D !important;
+            border-radius: 10px !important;
+            min-height: 44px !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
             outline: none !important;
-            transition: all 0.22s ease !important;
+            transition: border-color 0.15s ease !important;
         }
         [data-testid="stSelectbox"] div[data-baseweb="select"]:hover > div,
         [data-testid="stSelectbox"] div[data-baseweb="select"]:focus-within > div,
@@ -249,8 +238,8 @@ def inject_vibrant_theme() -> None:
         .react-aria-ComboBox div[role="group"]:focus-within,
         [data-testid="stSelectbox"] div[role="group"]:hover,
         [data-testid="stSelectbox"] div[role="group"]:focus-within {
-            border-color: #22D3EE !important;
-            box-shadow: 0 0 16px rgba(34, 211, 238, 0.25), 0 0 0 1px rgba(139, 92, 246, 0.35) !important;
+            border-color: #3B82F6 !important;
+            box-shadow: 0 0 0 1px #3B82F6 !important;
             outline: none !important;
         }
         [data-testid="stSelectbox"] input[role="combobox"],
@@ -259,7 +248,7 @@ def inject_vibrant_theme() -> None:
             background-color: transparent !important;
             color: #F8FAFC !important;
             -webkit-text-fill-color: #F8FAFC !important;
-            font-weight: 600 !important;
+            font-weight: 500 !important;
             outline: none !important;
             border: none !important;
             box-shadow: none !important;
@@ -268,19 +257,19 @@ def inject_vibrant_theme() -> None:
         .react-aria-ComboBox button[aria-haspopup="listbox"] {
             background: transparent !important;
             background-color: transparent !important;
-            color: #22D3EE !important;
+            color: #94A3B8 !important;
             border: none !important;
             box-shadow: none !important;
         }
         [data-testid="stSelectbox"] button[aria-haspopup="listbox"] svg,
         .react-aria-ComboBox button[aria-haspopup="listbox"] svg,
         div[data-baseweb="select"] svg {
-            fill: #22D3EE !important;
-            color: #22D3EE !important;
+            fill: #94A3B8 !important;
+            color: #94A3B8 !important;
         }
         div[data-baseweb="select"] * {
             color: #F8FAFC !important;
-            font-weight: 600 !important;
+            font-weight: 500 !important;
         }
         [data-baseweb="popover"],
         [data-baseweb="popover"] > div,
@@ -289,11 +278,11 @@ def inject_vibrant_theme() -> None:
         [role="listbox"],
         .react-aria-Popover,
         .react-aria-ListBox {
-            background: #0D1528 !important;
-            background-color: #0D1528 !important;
-            border: 1px solid rgba(34, 211, 238, 0.45) !important;
-            border-radius: 12px !important;
-            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.65), 0 0 20px rgba(6, 182, 212, 0.2) !important;
+            background: #111827 !important;
+            background-color: #111827 !important;
+            border: 1px solid #26334D !important;
+            border-radius: 10px !important;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5) !important;
             padding: 0.3rem !important;
             color: #F8FAFC !important;
         }
@@ -302,11 +291,11 @@ def inject_vibrant_theme() -> None:
         div[data-baseweb="popover"] li {
             background-color: transparent !important;
             color: #E2E8F0 !important;
-            border-radius: 8px !important;
-            padding: 0.52rem 0.78rem !important;
+            border-radius: 6px !important;
+            padding: 0.5rem 0.75rem !important;
             margin-bottom: 2px !important;
             font-weight: 500 !important;
-            transition: all 0.16s ease !important;
+            transition: background 0.12s ease !important;
         }
         [role="option"]:hover,
         [role="option"][aria-selected="true"],
@@ -316,12 +305,12 @@ def inject_vibrant_theme() -> None:
         .react-aria-ListBoxItem[data-focused],
         .react-aria-ListBoxItem[data-selected],
         div[data-baseweb="popover"] li:hover {
-            background: linear-gradient(90deg, rgba(6, 182, 212, 0.24), rgba(139, 92, 246, 0.26)) !important;
-            color: #22D3EE !important;
-            font-weight: 700 !important;
+            background: #161F30 !important;
+            color: #38BDF8 !important;
+            font-weight: 600 !important;
         }
 
-        /* Ẩn dòng nhắc Ctrl+Enter mặc định vì đã tự động phản hồi thời gian thực */
+        /* Ẩn dòng nhắc Ctrl+Enter mặc định */
         [data-testid="InputInstructions"] {
             display: none !important;
         }
@@ -329,62 +318,62 @@ def inject_vibrant_theme() -> None:
         /* Textarea & Buttons */
         .stTextArea textarea,
         div[data-baseweb="base-input"] {
-            background-color: #0D1528 !important;
+            background-color: #111827 !important;
             color: #F8FAFC !important;
-            border: 1px solid rgba(139, 92, 246, 0.42) !important;
-            border-radius: 12px !important;
+            border: 1px solid #26334D !important;
+            border-radius: 10px !important;
             font-size: 0.95rem !important;
             line-height: 1.5 !important;
+            font-family: 'Geist', sans-serif !important;
         }
         .stTextArea textarea:focus {
-            border-color: #22D3EE !important;
-            box-shadow: 0 0 16px rgba(34, 211, 238, 0.25) !important;
+            border-color: #3B82F6 !important;
+            box-shadow: 0 0 0 1px #3B82F6 !important;
             outline: none !important;
         }
         .stButton > button[kind="primary"], .stButton > button {
-            background: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%) !important;
+            background: #3B82F6 !important;
             color: #FFFFFF !important;
-            font-weight: 700 !important;
-            border: 1px solid rgba(34, 211, 238, 0.4) !important;
-            border-radius: 12px !important;
-            padding: 0.58rem 1.2rem !important;
-            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.32) !important;
-            transition: all 0.22s ease !important;
+            font-weight: 600 !important;
+            border: 1px solid #60A5FA !important;
+            border-radius: 8px !important;
+            padding: 0.52rem 1.1rem !important;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25) !important;
+            transition: background 0.15s ease, transform 0.15s ease !important;
         }
         .stButton > button:hover {
-            transform: translateY(-2px) !important;
-            box-shadow: 0 10px 26px rgba(6, 182, 212, 0.45) !important;
+            background: #2563EB !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35) !important;
         }
 
-        /* Modern Glassmorphic Pill Tabs */
+        /* Pill Tabs */
         [data-baseweb="tab-list"] {
-            background: rgba(13, 21, 40, 0.85) !important;
-            border: 1px solid rgba(139, 92, 246, 0.35) !important;
-            border-radius: 14px !important;
-            padding: 0.35rem !important;
-            gap: 0.5rem !important;
-            margin-bottom: 1.1rem !important;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35) !important;
+            background: #111827 !important;
+            border: 1px solid #26334D !important;
+            border-radius: 10px !important;
+            padding: 0.25rem !important;
+            gap: 0.4rem !important;
+            margin-bottom: 1rem !important;
         }
         [data-baseweb="tab"] {
             background: transparent !important;
             color: #94A3B8 !important;
-            border-radius: 10px !important;
-            padding: 0.58rem 1.35rem !important;
-            font-weight: 700 !important;
-            font-size: 0.95rem !important;
+            border-radius: 8px !important;
+            padding: 0.5rem 1.2rem !important;
+            font-weight: 600 !important;
+            font-size: 0.9rem !important;
             border: 1px solid transparent !important;
-            transition: all 0.22s ease !important;
+            transition: all 0.15s ease !important;
         }
         [data-baseweb="tab"]:hover {
-            color: #E2E8F0 !important;
-            background: rgba(30, 41, 59, 0.5) !important;
+            color: #F8FAFC !important;
+            background: #161F30 !important;
         }
         [data-baseweb="tab"][aria-selected="true"] {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.34) 0%, rgba(6, 182, 212, 0.30) 100%) !important;
+            background: #1E293B !important;
             color: #F8FAFC !important;
-            border: 1px solid rgba(34, 211, 238, 0.58) !important;
-            box-shadow: 0 4px 16px rgba(6, 182, 212, 0.24) !important;
+            border: 1px solid #3B82F6 !important;
         }
         [data-baseweb="tab-highlight"],
         [data-baseweb="tab-border"] {
@@ -395,8 +384,8 @@ def inject_vibrant_theme() -> None:
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(6, minmax(0, 1fr));
-            gap: 0.85rem;
-            margin-bottom: 1.45rem;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
         }
         @media (max-width: 1280px) {
             .kpi-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -406,117 +395,115 @@ def inject_vibrant_theme() -> None:
         }
         .kpi-card {
             position: relative;
-            background: rgba(13, 21, 40, 0.82);
-            border: 1px solid rgba(139, 92, 246, 0.28);
-            border-radius: 16px;
-            padding: 1rem 1.05rem;
-            backdrop-filter: blur(12px);
-            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+            background: #111827;
+            border: 1px solid #26334D;
+            border-radius: 12px;
+            padding: 0.9rem 1rem;
+            transition: border-color 0.15s ease, transform 0.15s ease;
             overflow: hidden;
         }
         .kpi-card::before {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #06B6D4, #8B5CF6);
+            height: 2px;
+            background: #3B82F6;
         }
         .kpi-card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(34, 211, 238, 0.6);
-            box-shadow: 0 12px 26px rgba(6, 182, 212, 0.2), 0 0 16px rgba(139, 92, 246, 0.2);
+            transform: translateY(-2px);
+            border-color: #3B82F6;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
         }
         .kpi-label {
-            font-size: 0.75rem;
-            font-weight: 700;
+            font-size: 0.72rem;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.04em;
             color: #94A3B8;
-            margin-bottom: 0.32rem;
+            margin-bottom: 0.28rem;
         }
         .kpi-value {
-            font-size: 1.62rem;
-            font-weight: 800;
+            font-size: 1.55rem;
+            font-weight: 700;
             color: #F8FAFC;
             line-height: 1.2;
-            margin-bottom: 0.42rem;
-            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 0.35rem;
+            font-family: 'Geist Mono', monospace;
         }
         .kpi-delta {
             display: inline-block;
-            font-size: 0.73rem;
-            font-weight: 700;
-            padding: 0.18rem 0.55rem;
-            border-radius: 999px;
-            background: rgba(16, 185, 129, 0.16);
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 0.15rem 0.5rem;
+            border-radius: 6px;
+            background: rgba(16, 185, 129, 0.15);
             color: #34D399;
-            border: 1px solid rgba(16, 185, 129, 0.35);
+            border: 1px solid rgba(16, 185, 129, 0.3);
         }
         .kpi-delta.corpus {
-            background: rgba(6, 182, 212, 0.15);
-            color: #22D3EE;
-            border-color: rgba(6, 182, 212, 0.35);
+            background: #161F30;
+            color: #38BDF8;
+            border-color: #26334D;
         }
 
         /* Bento Card */
         .bento-card {
-            background: rgba(13, 21, 40, 0.78);
-            border: 1px solid rgba(139, 92, 246, 0.30);
-            border-radius: 16px;
-            padding: 1.1rem 1.25rem;
-            margin-bottom: 0.95rem;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background: #111827;
+            border: 1px solid #26334D;
+            border-radius: 12px;
+            padding: 1.1rem 1.2rem;
+            margin-bottom: 0.85rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            transition: border-color 0.15s ease;
         }
         .bento-card:hover {
-            border-color: rgba(34, 211, 238, 0.5);
-            box-shadow: 0 12px 28px rgba(6, 182, 212, 0.14), 0 0 18px rgba(139, 92, 246, 0.15);
+            border-color: #3B82F6;
         }
 
         /* Section Header */
         .section-hdr {
-            margin: 1.25rem 0 0.9rem 0;
-            padding: 0.85rem 1.15rem;
-            background: linear-gradient(90deg, rgba(15, 23, 42, 0.88) 0%, rgba(13, 19, 38, 0.45) 100%);
-            border-left: 4px solid #8B5CF6;
-            border-radius: 0 14px 14px 0;
-            border-top: 1px solid rgba(139, 92, 246, 0.22);
-            border-right: 1px solid rgba(6, 182, 212, 0.16);
-            border-bottom: 1px solid rgba(6, 182, 212, 0.16);
+            margin: 1.1rem 0 0.8rem 0;
+            padding: 0.75rem 1rem;
+            background: #111827;
+            border-left: 3px solid #3B82F6;
+            border-top: 1px solid #26334D;
+            border-right: 1px solid #26334D;
+            border-bottom: 1px solid #26334D;
+            border-radius: 0 10px 10px 0;
         }
         .section-badge {
             display: inline-block;
-            font-size: 0.69rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
-            padding: 0.16rem 0.62rem;
-            border-radius: 999px;
-            background: linear-gradient(90deg, rgba(6, 182, 212, 0.22), rgba(139, 92, 246, 0.26));
-            color: #22D3EE;
-            border: 1px solid rgba(34, 211, 238, 0.42);
-            margin-bottom: 0.3rem;
+            padding: 0.14rem 0.55rem;
+            border-radius: 6px;
+            background: #161F30;
+            color: #38BDF8;
+            border: 1px solid #26334D;
+            margin-bottom: 0.25rem;
         }
         .section-title {
-            font-size: 1.24rem;
-            font-weight: 800;
+            font-size: 1.15rem;
+            font-weight: 700;
             color: #F8FAFC;
-            margin: 0.08rem 0 0.18rem 0;
+            margin: 0.05rem 0 0.15rem 0;
+            letter-spacing: -0.01em;
         }
         .section-subtitle {
-            font-size: 0.84rem;
+            font-size: 0.82rem;
             color: #94A3B8;
             margin: 0;
         }
 
         /* PyVi Segmented Tokens & 4 Linguistic Metrics */
         .token-box {
-            background: rgba(13, 21, 40, 0.82);
-            border: 1px solid rgba(6, 182, 212, 0.36);
-            border-radius: 14px;
-            padding: 0.95rem 1.1rem;
-            margin: 0.7rem 0 0.85rem 0;
+            background: #111827;
+            border: 1px solid #26334D;
+            border-radius: 12px;
+            padding: 0.9rem 1rem;
+            margin: 0.65rem 0 0.8rem 0;
         }
         .token-hdr {
             display: flex;
@@ -526,20 +513,20 @@ def inject_vibrant_theme() -> None:
             gap: 0.5rem;
             font-size: 0.82rem;
             color: #E2E8F0;
-            margin-bottom: 0.65rem;
-            font-weight: 700;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
         }
         .token-metrics-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 0.5rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.7rem;
         }
         .token-metric-item {
-            background: rgba(7, 9, 19, 0.65);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            border-radius: 10px;
-            padding: 0.42rem 0.55rem;
+            background: #161F30;
+            border: 1px solid #26334D;
+            border-radius: 8px;
+            padding: 0.38rem 0.5rem;
             text-align: center;
         }
         .token-metric-lbl {
@@ -549,34 +536,33 @@ def inject_vibrant_theme() -> None:
             letter-spacing: 0.03em;
         }
         .token-metric-val {
-            font-size: 0.98rem;
-            font-weight: 800;
-            color: #22D3EE;
-            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #38BDF8;
+            font-family: 'Geist Mono', monospace;
         }
         .token-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.42rem;
+            gap: 0.4rem;
             align-items: center;
         }
         .token-chip {
             display: inline-flex;
             align-items: center;
-            padding: 0.24rem 0.62rem;
-            border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.81rem;
-            background: rgba(30, 41, 59, 0.78);
+            padding: 0.22rem 0.58rem;
+            border-radius: 6px;
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.8rem;
+            background: #161F30;
             color: #CBD5E1;
-            border: 1px solid rgba(148, 163, 184, 0.26);
+            border: 1px solid #26334D;
         }
         .token-chip.compound {
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.24), rgba(139, 92, 246, 0.28));
-            color: #22D3EE;
-            border: 1px solid rgba(34, 211, 238, 0.58);
+            background: rgba(56, 189, 248, 0.12);
+            color: #38BDF8;
+            border: 1px solid rgba(56, 189, 248, 0.4);
             font-weight: 600;
-            box-shadow: 0 0 12px rgba(6, 182, 212, 0.22);
         }
 
         /* Prediction Badges */
@@ -584,10 +570,10 @@ def inject_vibrant_theme() -> None:
             display: inline-flex;
             align-items: center;
             gap: 0.35rem;
-            padding: 0.3rem 0.82rem;
-            border-radius: 999px;
-            font-size: 0.8rem;
-            font-weight: 700;
+            padding: 0.28rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 600;
             letter-spacing: 0.03em;
             text-transform: uppercase;
         }
@@ -595,6 +581,9 @@ def inject_vibrant_theme() -> None:
         """,
         unsafe_allow_html=True,
     )
+
+
+inject_taste_theme = inject_vibrant_theme
 
 
 def render_top_title_bar(lang: str = "vi") -> None:
@@ -877,23 +866,23 @@ def extract_token_feature_importance(
 
 
 def _apply_dark_layout(fig: go.Figure, height: int = 320, title: str = "") -> go.Figure:
-    """Áp dụng chuẩn nền tối trong suốt và phông chữ sáng cho mọi biểu đồ Plotly."""
+    """Áp dụng chuẩn nền tối Obsidian và typography Geist cho mọi biểu đồ Plotly."""
     fig.update_layout(
         title=dict(
             text=title,
-            font=dict(size=13.5, color=TEXT_LIGHT, family="Inter, sans-serif"),
+            font=dict(size=13.5, color=TEXT_LIGHT, family="Geist, -apple-system, BlinkMacSystemFont, sans-serif"),
             x=0.02,
             y=0.95,
         )
         if title
         else None,
         paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(13,19,38,0.45)",
-        font=dict(color="#E2E8F0", family="Inter, sans-serif", size=11.5),
-        legend=dict(font=dict(color="#E2E8F0", size=10.5, family="Inter, sans-serif")),
+        plot_bgcolor="rgba(17,24,39,0.35)",
+        font=dict(color="#E2E8F0", family="Geist, -apple-system, BlinkMacSystemFont, sans-serif", size=11.5),
+        legend=dict(font=dict(color="#E2E8F0", size=10.5, family="Geist, -apple-system, BlinkMacSystemFont, sans-serif")),
         height=height,
         margin=dict(l=26, r=22, t=44 if title else 24, b=26),
-        hoverlabel=dict(bgcolor="#0F172A", bordercolor=VIOLET, font=dict(color=TEXT_LIGHT, size=12)),
+        hoverlabel=dict(bgcolor="#111827", bordercolor="#26334D", font=dict(color=TEXT_LIGHT, size=12, family="Geist, sans-serif")),
     )
     return fig
 
@@ -915,7 +904,7 @@ def make_confidence_gauge(
             mode="gauge+number",
             value=round(pct, 1),
             domain={"x": [0.04, 0.96], "y": [0.0, 0.73]},
-            number={"suffix": "%", "font": {"size": 22, "color": TEXT_LIGHT, "family": "JetBrains Mono, monospace"}},
+            number={"suffix": "%", "font": {"size": 22, "color": TEXT_LIGHT, "family": "Geist Mono, monospace"}},
             title={
                 "text": (
                     f"<span style='font-size:11.5px;color:#94A3B8'>{html.escape(title)}</span>"
@@ -981,7 +970,7 @@ def make_probability_bar_chart(
                 marker=dict(color=VIOLET, line=dict(color="rgba(255,255,255,0.22)", width=1)),
                 text=[f"{v:.1f}%" for v in values],
                 textposition="auto",
-                textfont=dict(color=TEXT_LIGHT, size=10.5, family="JetBrains Mono, monospace"),
+                textfont=dict(color=TEXT_LIGHT, size=10.5, family="Geist Mono, monospace"),
                 hovertemplate=f"<b>%{{y}}</b><br>{p_name}: %{{x:.2f}}%<extra></extra>",
             )
         )
@@ -994,7 +983,7 @@ def make_probability_bar_chart(
                 marker=dict(color=CYAN, line=dict(color="rgba(255,255,255,0.22)", width=1)),
                 text=[f"{v:.1f}%" for v in c_values],
                 textposition="auto",
-                textfont=dict(color=TEXT_LIGHT, size=10.5, family="JetBrains Mono, monospace"),
+                textfont=dict(color=TEXT_LIGHT, size=10.5, family="Geist Mono, monospace"),
                 hovertemplate=f"<b>%{{y}}</b><br>{c_name}: %{{x:.2f}}%<extra></extra>",
             )
         )
@@ -1023,7 +1012,7 @@ def make_probability_bar_chart(
                 marker=dict(color=colors, line=dict(color="rgba(255,255,255,0.22)", width=1)),
                 text=[f"{v:.1f}%" for v in values],
                 textposition="auto",
-                textfont=dict(color=TEXT_LIGHT, size=11, family="JetBrains Mono, monospace"),
+                textfont=dict(color=TEXT_LIGHT, size=11, family="Geist Mono, monospace"),
                 hovertemplate="<b>%{y}</b>: %{x:.2f}%<extra></extra>",
             )
         )
@@ -1161,7 +1150,7 @@ def make_token_importance_chart(
             marker_color=EMERALD,
             text=[f"{v:+.2f}" for v in sent_w],
             textposition="auto",
-            textfont=dict(size=10, color=TEXT_LIGHT, family="JetBrains Mono, monospace"),
+            textfont=dict(size=10, color=TEXT_LIGHT, family="Geist Mono, monospace"),
             hovertemplate=f"<b>%{{y}}</b><br>{sent_trace_name}: %{{x:+.3f}}<extra></extra>",
         )
     )
@@ -1174,7 +1163,7 @@ def make_token_importance_chart(
             marker_color=VIOLET,
             text=[f"{v:+.2f}" for v in topic_w],
             textposition="auto",
-            textfont=dict(size=10, color=TEXT_LIGHT, family="JetBrains Mono, monospace"),
+            textfont=dict(size=10, color=TEXT_LIGHT, family="Geist Mono, monospace"),
             hovertemplate=f"<b>%{{y}}</b><br>{topic_trace_name}: %{{x:+.3f}}<extra></extra>",
         )
     )
@@ -1516,7 +1505,7 @@ def make_confusion_matrix_heatmap(
             y=clean_labels,
             text=text_matrix,
             texttemplate="%{text}",
-            textfont={"size": 11, "family": "JetBrains Mono, monospace"},
+            textfont={"size": 11, "family": "Geist Mono, monospace"},
             colorscale=colorscale,
             showscale=True,
             colorbar=dict(title="%", ticksuffix="%", thickness=12),
@@ -1593,7 +1582,7 @@ def make_split_donut_chart(dataset_stats: Dict[str, Any], lang: str = "vi") -> g
                 text=f"<b>{total_n:,}</b><br><span style='font-size:11px;color:#94A3B8'>{center_sub}</span>",
                 x=0.5,
                 y=0.5,
-                font=dict(size=16, color=TEXT_LIGHT, family="JetBrains Mono, monospace"),
+                font=dict(size=16, color=TEXT_LIGHT, family="Geist Mono, monospace"),
                 showarrow=False,
             )
         ],
@@ -1645,7 +1634,7 @@ def make_label_distribution_chart(
             marker=dict(color=colors, line=dict(color="rgba(255,255,255,0.2)", width=1)),
             text=texts,
             textposition="outside",
-            textfont=dict(size=11, color=TEXT_LIGHT, family="JetBrains Mono, monospace"),
+            textfont=dict(size=11, color=TEXT_LIGHT, family="Geist Mono, monospace"),
             hovertemplate=hover_tpl,
         )
     )
